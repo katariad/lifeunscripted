@@ -1,5 +1,3 @@
-// app/[post]/page.tsx
-
 import { fetchInitialData } from "@/lib/FetchIntialData";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -11,13 +9,17 @@ import PostContent from "@/app/[post]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
-type Props = {
+// ✅ Correct type
+type PageProps = {
   params: {
     post: string;
   };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// ✅ generateMetadata receives PageProps — NOT Promise<PageProps>
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
@@ -57,7 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PostPage({ params }: Props) {
+// ✅ PostPage also uses correct PageProps
+export default async function PostPage({ params }: PageProps) {
   const { posts } = await fetchInitialData();
   const slug = params.post;
   const post = (posts as Post[]).find((post) => post.slug === slug);
