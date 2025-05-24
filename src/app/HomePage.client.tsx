@@ -26,7 +26,7 @@ export default function HomePage() {
       const { posts } = await fetchInitialData();
       setIsLoading(true);
       if (posts) {
-        const sortedPosts = posts.sort((a, b) => {
+        const sortedPosts = (posts as Post[]).sort((a, b) => {
           return (
             new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           );

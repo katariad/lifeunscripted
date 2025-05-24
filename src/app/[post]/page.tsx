@@ -11,20 +11,23 @@ import PostContent from "@/app/[post]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
-type PageProps = {
+type Props = {
   params: {
     post: string;
   };
 };
 
-// ✅ Properly export dynamic metadata
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+// ✅ Async logging for metadata generation
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // console.log("📌 [generateMetadata] Slug param:", params.post);
+
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
-  if (!post) return {};
+  if (!post) {
+    console.warn("❌ [generateMetadata] Post not found:", params.post);
+    return {};
+  }
 
   const title = `${post.title} | Life Unscripted`;
   const description =
@@ -36,12 +39,10 @@ export async function generateMetadata({
     title,
     description,
     keywords: post.keywords
-      ? post.keywords.split(",").map((kw) => kw.replace(/["']/g, "").trim()) // Remove quotes and trim whitespace
+      ? post.keywords.split(",").map((kw) => kw.replace(/["']/g, "").trim())
       : [],
     robots: "index, follow",
-    alternates: {
-      canonical: url,
-    },
+    alternates: { canonical: url },
     openGraph: {
       type: "article",
       title,
@@ -59,21 +60,24 @@ export async function generateMetadata({
     },
   };
 }
-// async functio  have
 
-export default async function PostPage({ params }: PageProps) {
+// ✅ Page component with logging
+export default async function PostPage({ params }: Props) {
+  console.log("📌 [PostPage] Params received:", params);
+
   const { posts } = await fetchInitialData();
   const slug = params.post;
-  const post = (posts as Post[]).find((post) => post.slug === slug);
+  const post = (posts as Post[]).find((p) => p.slug === slug);
 
   if (!post) {
+    console.error("❌ [PostPage] Post not found:", slug);
     notFound();
     return null;
   }
 
   return (
     <>
-      {/* ✅ Schema.org JSON-LD */}
+      {/* JSON-LD Schema */}
       <Script id="ld-json" type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -81,17 +85,11 @@ export default async function PostPage({ params }: PageProps) {
           headline: post.title,
           description: post.Description,
           image: post.featured_image,
-          author: {
-            "@type": "Person",
-            name: "Life Unscripted",
-          },
+          author: { "@type": "Person", name: "Life Unscripted" },
           publisher: {
             "@type": "Organization",
             name: "Life Unscripted",
-            logo: {
-              "@type": "ImageObject",
-              url: "/logo.webp",
-            },
+            logo: { "@type": "ImageObject", url: "/logo.webp" },
           },
           url: `https://lifeunscripted.site/${post.slug}`,
           datePublished: post.updated_at,
@@ -99,13 +97,12 @@ export default async function PostPage({ params }: PageProps) {
         })}
       </Script>
 
-      {/* ✅ Page Content */}
       <div className="container mx-auto p-4 pt-0 postcontent">
         <div className="mb-4 border-b-2 border-dotted border-gray-300/90">
           <p className="flex gap-1 text-xs! capitalize mt-0">
-            <Link href="/">Home</Link> <span> {">"} </span>
+            <Link href="/">Home</Link> <span> &gt; </span>
             <Link href={`/categories/${post.category}`}>{post.category}</Link>
-            <span> {">"} </span>
+            <span> &gt; </span>
             {post.title}
           </p>
           <p className="text-xs! flex mt-2">
