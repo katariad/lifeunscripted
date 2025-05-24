@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // ✅ PostPage also uses correct PageProps
-export default async function PostPage({ params }: PageProps) {
+export default async function PostPage({ params }: Props) {
   const { posts } = await fetchInitialData();
   const slug = params.post;
   const post = (posts as Post[]).find((post) => post.slug === slug);
