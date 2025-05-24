@@ -9,15 +9,15 @@ import PostContent from "@/app/[post]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
-// ✅ Correct type
-type Props = {
-  params: {
-    post: string;
-  };
+type PageProps = {
+  params: Record<string, string>;
 };
+// ✅ Correct type
 
 // ✅ generateMetadata receives PageProps — NOT Promise<PageProps>
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // ✅ PostPage also uses correct PageProps
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params }: PageProps) {
   const { posts } = await fetchInitialData();
   const slug = params.post;
   const post = (posts as Post[]).find((post) => post.slug === slug);
