@@ -59,6 +59,7 @@ export async function generateMetadata({
     },
   };
 }
+// async functio  have
 
 export default async function PostPage({ params }: PageProps) {
   const { posts } = await fetchInitialData();
