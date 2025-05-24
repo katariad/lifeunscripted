@@ -11,12 +11,16 @@ import PostContent from "@/app/[post]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
+type PageProps = {
+  params: {
+    post: string;
+  };
+};
+
 // ✅ Properly export dynamic metadata
 export async function generateMetadata({
   params,
-}: {
-  params: { post: string };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
@@ -56,11 +60,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { post: string };
-}) {
+export default async function PostPage({ params }: PageProps) {
   const { posts } = await fetchInitialData();
   const slug = params.post;
   const post = (posts as Post[]).find((post) => post.slug === slug);
