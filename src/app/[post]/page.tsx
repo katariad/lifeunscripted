@@ -10,16 +10,14 @@ import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
 // ✅ Correct type
-type PageProps = {
+type Props = {
   params: {
     post: string;
   };
 };
 
 // ✅ generateMetadata receives PageProps — NOT Promise<PageProps>
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
