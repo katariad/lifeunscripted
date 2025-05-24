@@ -8,9 +8,10 @@ import { Post } from "@/app/types/Post";
 export default async function CategoryPage({
   params,
 }: {
-  params: { category: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const category = decodeURIComponent(params.category).replaceAll("-", " "); // handle spaces, etc.
+  const { slug } = await params;
+  const category = slug;
 
   const { posts } = await fetchInitialData();
 

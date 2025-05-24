@@ -1,5 +1,5 @@
+// app/[post]/page.tsx
 import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Metadata } from "next";
 import Link from "next/link";
 import "./post.css";
 import { notFound } from "next/navigation";
@@ -9,19 +9,16 @@ import PostContent from "@/app/[post]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
-type PageProps = {
-  params: {
-    post: string;
-  };
-};
+// ✅ Generate metadata for SEO using App Router
 
-// ✅ Corrected generateMetadata
-export async function generateMetadata(
-  props: Promise<PageProps>
-): Promise<Metadata> {
-  const { params } = await props;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const { posts } = await fetchInitialData();
-  const post = (posts as Post[]).find((p) => p.slug === params.post);
+  const post = (posts as Post[]).find((p) => p.slug === slug);
 
   if (!post) return {};
 
@@ -59,15 +56,18 @@ export async function generateMetadata(
   };
 }
 
-// ✅ PostPage also uses correct PageProps
-export default async function PostPage({ params }: PageProps) {
+// ✅ Main blog post page component
+export default async function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const { posts } = await fetchInitialData();
-  const slug = params.post;
-  const post = (posts as Post[]).find((post) => post.slug === slug);
+  const post = (posts as Post[]).find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
-    return null;
   }
 
   return (
