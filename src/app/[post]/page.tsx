@@ -10,7 +10,9 @@ import { Post } from "@/app/types/Post";
 import Script from "next/script";
 
 type PageProps = {
-  params: Record<string, string>;
+  params: {
+    post: string;
+  };
 };
 // ✅ Correct type
 
