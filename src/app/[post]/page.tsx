@@ -17,9 +17,10 @@ type PageProps = {
 // ✅ Correct type
 
 // ✅ generateMetadata receives PageProps — NOT Promise<PageProps>
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: Promise<PageProps>
+): Promise<Metadata> {
+  const { params } = await props;
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === params.post);
 
