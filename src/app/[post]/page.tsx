@@ -15,11 +15,7 @@ type PageProps = {
   };
 };
 
-<<<<<<< HEAD
 // ✅ Corrected generateMetadata
-=======
-// ✅ generateMetadata receives PageProps — NOT Promise<PageProps>
->>>>>>> b1f959cfcb944d4064523dd97109d304d089da27
 export async function generateMetadata(
   props: Promise<PageProps>
 ): Promise<Metadata> {
