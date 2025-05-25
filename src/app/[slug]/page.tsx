@@ -5,7 +5,7 @@ import "./post.css";
 import { notFound } from "next/navigation";
 import Datefunction from "@/app/assest/utils/Datefunction";
 import Image from "next/image";
-import PostContent from "@/app/[post]/Postcontent";
+import PostContent from "@/app/[slug]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 

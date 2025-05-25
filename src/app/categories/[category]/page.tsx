@@ -8,10 +8,11 @@ import { Post } from "@/app/types/Post";
 export default async function CategoryPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ category: string }>;
 }) {
-  const { slug } = await params;
-  const category = slug;
+  const { category } = await params;
+
+  console.log(category.replaceAll("-", " ").toLowerCase());
 
   const { posts } = await fetchInitialData();
 
@@ -20,7 +21,9 @@ export default async function CategoryPage({
   }
 
   const filteredPosts = (posts as Post[]).filter(
-    (post) => post.category.toLowerCase() === category.toLowerCase()
+    (post) =>
+      post.category.replaceAll("-", " ").toLowerCase() ===
+      category.replaceAll("-", " ").toLowerCase()
   );
 
   if (filteredPosts.length === 0) {
@@ -29,7 +32,7 @@ export default async function CategoryPage({
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Category: {category}</h1>
+      <h1 className="text-3xl font-bold mb-4">Category: {posts.category}</h1>
       <ul className="space-y-4">
         {filteredPosts.map((post) => (
           <li key={post.id} className="border p-4 rounded shadow">
