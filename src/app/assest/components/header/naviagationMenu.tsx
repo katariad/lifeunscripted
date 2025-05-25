@@ -83,7 +83,7 @@ export default function NavigationMenu() {
                 <Menulink linkurl="#" text="Tool 1" />
                 <Menulink linkurl="#" text="Tool 2" />
               </Menulistdropdown> */}
-              <Menulink linkurl="/sitemap" text="Sitemap" />
+              <Menulink linkurl="/sitemapPage" text="Sitemap" />
               <Menulink linkurl="/contact" text="Contact" />
             </ul>
           </menu>
@@ -147,7 +147,7 @@ export default function NavigationMenu() {
                       </ul>
                     </details>
                   </li>
-                  <Menulink linkurl="/sitemap" text="Sitemap" />
+                  <Menulink linkurl="/sitemapPage" text="Sitemap" />
                   <Menulink linkurl="/contact" text="Contact" />
                 </ul>
               </menu>

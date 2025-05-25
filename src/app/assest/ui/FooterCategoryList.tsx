@@ -11,7 +11,7 @@ export default function FooterCategoryList() {
       />
       <PopularCategoriessingle
         count={2}
-        url={"/categories/news-hub"}
+        url={"/categories/news-hubs"}
         name="news hubs"
       />
       <PopularCategoriessingle

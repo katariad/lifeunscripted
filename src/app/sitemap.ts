@@ -1,6 +1,6 @@
 import { type MetadataRoute } from "next";
 import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Post } from "../types/Post";
+import { Post } from "@/app/types/Post";
 
 export default async function GET(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.lifeunscripted.site"; // Replace with your actual domain
