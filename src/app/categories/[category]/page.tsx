@@ -2,7 +2,6 @@ import { fetchInitialData } from "../../../lib/FetchIntialData";
 import { notFound } from "next/navigation";
 import Datefunction from "@/app/assest/utils/Datefunction";
 import Link from "next/link";
-import slugify from "@/app/assest/utils/Slugmaker";
 import { Post } from "@/app/types/Post";
 
 export default async function CategoryPage({
@@ -32,7 +31,7 @@ export default async function CategoryPage({
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Category: {posts.category}</h1>
+      <h1 className="text-3xl font-bold mb-4">Category: {category}</h1>
       <ul className="space-y-4">
         {filteredPosts.map((post) => (
           <li key={post.id} className="border p-4 rounded shadow">
@@ -42,11 +41,7 @@ export default async function CategoryPage({
               {<Datefunction date={post.updated_at} />}
             </span>
             <p className="text-gray-600">{post.Description}</p>
-            <Link
-              rel="stylesheet"
-              href={`/${slugify(post.title)}`}
-              className="readmore_button"
-            >
+            <Link rel="stylesheet" href={post.slug} className="readmore_button">
               Read more
             </Link>
           </li>
