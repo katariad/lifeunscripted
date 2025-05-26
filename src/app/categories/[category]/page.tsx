@@ -41,9 +41,9 @@ export default async function CategoryPage({
               {<Datefunction date={post.updated_at} />}
             </span>
             <p className="text-gray-600">{post.Description}</p>
-            <a href={post.slug} className="readmore_button">
+            <Link href={`/${post.slug}`} className="readmore_button">
               Read more
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
