@@ -25,7 +25,7 @@ export async function generateMetadata({
   const title = `${post.title} | Life Unscripted`;
   const description =
     post.Description || "Explore blog insights with Life Unscripted.";
-  const url = `https://lifeunscripted.site/${post.slug}`;
+  const url = `https://www.lifeunscripted.site/${post.slug}`;
   const image = post.featured_image;
 
   return {
@@ -91,7 +91,7 @@ export default async function PostPage({
               url: "/logo.webp",
             },
           },
-          url: `https://lifeunscripted.site/${post.slug}`,
+          url: `https://www.lifeunscripted.site/${post.slug}`,
           datePublished: post.updated_at,
           dateModified: post.updated_at,
         })}
