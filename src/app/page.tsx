@@ -17,19 +17,19 @@ export const metadata: Metadata = {
   ],
   robots: "index, follow",
   alternates: {
-    canonical: "https://lifeunscripted.site/",
+    canonical: "https://www.lifeunscripted.site/",
   },
   openGraph: {
     title: "Lifeunscripted - Blogging Tips & Natural Living",
     description:
       "Lifeunscripted offers blogging tutorials, SEO tips, and natural skincare remedies to help you live better and earn online.",
-    url: "https://lifeunscripted.site/",
+    url: "https://www.lifeunscripted.site/",
     siteName: "Life Unscripted",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://lifeunscripted.site/logo.webp",
+        url: `/logo.webp`,
         width: 1200,
         height: 630,
         alt: "Lifeunscripted",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description:
       "Blog smarter and live better with expert SEO, blogging, and natural wellness content.",
     creator: "@lifeunscripted",
-    images: ["https://lifeunscripted.site/logo.webp"],
+    images: [`/logo.webp`],
   },
 };
 
@@ -55,10 +55,10 @@ export default function Page() {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "Lifeunscripted",
-          url: "https://lifeunscripted.site/",
+          url: "https://www.lifeunscripted.site/",
           potentialAction: {
             "@type": "SearchAction",
-            target: "https://lifeunscripted.site/?s={search_term_string}",
+            target: "https://www.lifeunscripted.site/?s={search_term_string}",
             "query-input": "required name=search_term_string",
           },
           publisher: {
