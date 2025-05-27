@@ -6,8 +6,9 @@ import { fetchInitialData } from "../lib/FetchIntialData";
 import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "LifeUnscripted - Blogging Tips & Natural Living",
   description:
     "Lifeunscripted offers blogging tutorials, SEO tips, and natural skincare remedies to help you live better and earn online.",
@@ -20,6 +21,11 @@ export const metadata = {
     "Earn online money with us",
     "Smart Seo tips and Guide",
   ],
+  icons: {
+    icon: "https://www.lifeunscripted.site/favicon.ico",
+    shortcut: "https://www.lifeunscripted.site/favicon.ico",
+    apple: "https://www.lifeunscripted.site/apple-touch-icon.png",
+  },
   robots: "index, follow",
   alternates: {
     canonical: "https://www.lifeunscripted.site/",
@@ -34,7 +40,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: `https://www.lifeunscripted.site/logo.webp`,
+        url: `https://www.lifeunscripted.site/ogimage.jpg`,
         width: 1200,
         height: 630,
         alt: "Lifeunscripted",
@@ -47,7 +53,7 @@ export const metadata = {
     description:
       "Blog smarter and live better with expert SEO, blogging, and natural wellness content.",
     creator: "@lifeunscripted",
-    images: [`https://www.lifeunscripted.site/logo.webp`],
+    images: [`https://www.lifeunscripted.site/ogimage.jpg`],
   },
 };
 
