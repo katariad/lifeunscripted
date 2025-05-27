@@ -6,7 +6,7 @@ import { fetchInitialData } from "../lib/FetchIntialData";
 import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
 import Script from "next/script";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -69,6 +69,7 @@ export default async function RootLayout({
           <Footer />
         </InitialDataProvider>
       </body>
+      <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
     </html>
   );
 }
