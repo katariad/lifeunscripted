@@ -1,8 +1,8 @@
 import { fetchInitialData } from "../../../lib/FetchIntialData";
 import { notFound } from "next/navigation";
 import Datefunction from "@/app/assest/utils/Datefunction";
-import Link from "next/link";
 import { Post } from "@/app/types/Post";
+import Link from "next/link";
 
 export default async function CategoryPage({
   params,
@@ -41,9 +41,9 @@ export default async function CategoryPage({
               {<Datefunction date={post.updated_at} />}
             </span>
             <p className="text-gray-600">{post.Description}</p>
-            <a href={post.slug} className="readmore_button">
+            <Link href={`/${post.slug}`} className="readmore_button">
               Read more
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
