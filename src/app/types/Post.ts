@@ -12,4 +12,5 @@ export type Post = {
   is_popular: string;
   content: string;
   keywords: string;
+  faqSchema: string;
 };

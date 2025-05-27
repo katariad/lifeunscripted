@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `/logo.webp`,
+        url: `https://www.lifeunscripted.site/logo.webp`,
         width: 1200,
         height: 630,
         alt: "Lifeunscripted",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description:
       "Blog smarter and live better with expert SEO, blogging, and natural wellness content.",
     creator: "@lifeunscripted",
-    images: [`/logo.webp`],
+    images: [`https://www.lifeunscripted.site/logo.webp`],
   },
 };
 
@@ -66,12 +66,11 @@ export default function Page() {
             name: "Lifeunscripted",
             logo: {
               "@type": "ImageObject",
-              url: "/logo.webp",
+              url: "https://www.lifeunscripted.site/logo.webp",
             },
           },
         })}
       </Script>
-
       {/* Client Side Blog List Component */}
       <HomePage />
     </>

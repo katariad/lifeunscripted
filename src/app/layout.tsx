@@ -7,6 +7,50 @@ import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
+export const metadata = {
+  title: "LifeUnscripted - Blogging Tips & Natural Living",
+  description:
+    "Lifeunscripted offers blogging tutorials, SEO tips, and natural skincare remedies to help you live better and earn online.",
+  keywords: [
+    "Life unscripted",
+    "Life Unscripted blog",
+    "blogging tips",
+    "life tips and guides",
+    "Skin care with DIY pack",
+    "Earn online money with us",
+    "Smart Seo tips and Guide",
+  ],
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/",
+  },
+  openGraph: {
+    title: "Lifeunscripted - Blogging Tips & Natural Living",
+    description:
+      "Lifeunscripted offers blogging tutorials, SEO tips, and natural skincare remedies to help you live better and earn online.",
+    url: "https://www.lifeunscripted.site/",
+    siteName: "Life Unscripted",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: `https://www.lifeunscripted.site/logo.webp`,
+        width: 1200,
+        height: 630,
+        alt: "Lifeunscripted",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lifeunscripted - Blogging Tips & Natural Living",
+    description:
+      "Blog smarter and live better with expert SEO, blogging, and natural wellness content.",
+    creator: "@lifeunscripted",
+    images: [`https://www.lifeunscripted.site/logo.webp`],
+  },
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -17,14 +61,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* ✅ This is the correct way to add CSS from CDN */}
         <link
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         />
-        <GoogleTagManager gtmId="GTM-KXVJ84PK" />
       </head>
-
       <body>
+        <GoogleTagManager gtmId="GTM-KXVJ84PK" />
+        <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
         <InitialDataProvider data={initialData}>
           <Header />
 
@@ -50,7 +95,6 @@ export default async function RootLayout({
           <Footer />
         </InitialDataProvider>
       </body>
-      <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
     </html>
   );
 }

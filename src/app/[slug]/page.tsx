@@ -65,7 +65,7 @@ export default async function PostPage({
   const { slug } = await params;
   const { posts } = await fetchInitialData();
   const post = (posts as Post[]).find((p) => p.slug === slug);
-
+  const faqSchema = post?.faqSchema;
   if (!post) {
     notFound();
   }
@@ -96,6 +96,42 @@ export default async function PostPage({
           dateModified: post.updated_at,
         })}
       </Script>
+
+      {/* Breadcrumb JSON-LD Structured Data */}
+      <Script id="breadcrumb-jsonld" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://www.lifeunscripted.site/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "category",
+              item: `https://www.lifeunscripted.site/${post.category}`,
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Post Title", // Replace with dynamic title
+              item: `https://www.lifeunscripted.site/blog/${post.slug}`,
+            },
+          ],
+        })}
+      </Script>
+
+      {faqSchema && (
+        <Script id="faq-schema" type="application/ld+json">
+          {typeof faqSchema === "string"
+            ? faqSchema
+            : JSON.stringify(faqSchema)}
+        </Script>
+      )}
 
       <div className="container mx-auto p-4 pt-0 postcontent">
         <div className="mb-4 border-b-2 border-dotted border-gray-300/90">
