@@ -1,32 +1,42 @@
 // src/app/categories/page.tsx
-"use client";
-import Link from "next/link";
-import { useInitialData } from "../../lib/InitialDataContext";
-import slugify from "../assest/utils/Slugmaker";
-import { Post } from "@/app/types/Post";
+
+import type { Metadata } from "next";
+import Categoryclient from "./Categoryclinet";
+
+// app/categories/page.tsx
+export const metadata: Metadata = {
+  title: "Browse All Categories | Life Unscripted",
+  description:
+    "Explore all blog categories on Life Unscripted, including health, skincare, DIY, and passive income tips.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/categories",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.lifeunscripted.site/categories",
+    title: "Browse All Categories | Life Unscripted",
+    description:
+      "Discover blog categories on health, wellness, passive income, and more.",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg", // replace with your actual image path
+        width: 1200,
+        height: 630,
+        alt: "All Blog Categories",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Categories | Life Unscripted",
+    description:
+      "Explore various blog categories like health, skincare, DIY, and monetization tips.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"], // replace with your actual image
+  },
+};
+
 export default function CategoriesPage() {
   // Get unique categories
-  const { posts } = useInitialData();
-  const uniqueCategories = Array.from(
-    new Set((posts as Post[])?.map((post) => post.category))
-  );
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Categories</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {uniqueCategories?.map((category, i) => (
-          <Link
-            key={i}
-            href={`categories/${slugify(category)}`}
-            className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition duration-300 border border-gray-200"
-          >
-            <h2 className="text-xl font-semibold capitalize text-blue-700">
-              {category}
-            </h2>
-            <p className="text-gray-600 mt-2">Click for more...</p>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+
+  return <Categoryclient />;
 }

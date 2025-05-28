@@ -1,5 +1,38 @@
 import Link from "next/link";
 import React from "react";
+// app/terms-and-conditions/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms and Conditions | Life Unscripted",
+  description:
+    "Review the Terms and Conditions for using Life Unscripted. Learn about your rights, responsibilities, and site usage policies.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/terms-and-conditions",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.lifeunscripted.site/terms-and-conditions",
+    title: "Terms and Conditions | Life Unscripted",
+    description:
+      "Understand the rules and terms that govern your use of Life Unscripted’s content and services.",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Terms and Conditions - Life Unscripted",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms and Conditions | Life Unscripted",
+    description:
+      "Read the Terms and Conditions that outline your rights and obligations while using Life Unscripted.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"],
+  },
+};
 
 export default function page() {
   return (

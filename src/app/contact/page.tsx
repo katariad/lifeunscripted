@@ -1,5 +1,37 @@
 import React from "react";
 
+// app/contact/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us | Life Unscripted",
+  description:
+    "Get in touch with the Life Unscripted team for inquiries, feedback, or collaborations.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/contact",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.lifeunscripted.site/contact",
+    title: "Contact Us | Life Unscripted",
+    description: "Reach out to us with your questions or suggestions.",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg", // Replace with your actual OG image path
+        width: 1200,
+        height: 630,
+        alt: "Contact Life Unscripted",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | Life Unscripted",
+    description: "Send us your message, feedback, or business inquiries.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"], // Same image or different one
+  },
+};
+
 export default function ContactPage() {
   return (
     <div className="max-w-2xl mx-auto p-6">

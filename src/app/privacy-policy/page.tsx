@@ -1,4 +1,37 @@
 import React from "react";
+// app/privacy-policy/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Life Unscripted",
+  description:
+    "Understand how Life Unscripted collects, uses, and protects your data. Read our privacy policy for full transparency.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/privacy-policy",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.lifeunscripted.site/privacy-policy",
+    title: "Privacy Policy | Life Unscripted",
+    description:
+      "Your privacy matters to us. Learn what information we collect and how we safeguard your personal data.",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Privacy Policy - Life Unscripted",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Life Unscripted",
+    description:
+      "Review Life Unscripted's policy on data collection, usage, and third-party sharing.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"],
+  },
+};
 
 export default function page() {
   return (

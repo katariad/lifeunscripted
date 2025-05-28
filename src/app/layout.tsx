@@ -6,7 +6,7 @@ import { fetchInitialData } from "../lib/FetchIntialData";
 import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "LifeUnscripted - Blogging Tips & Natural Living",

@@ -6,15 +6,16 @@ type props = {
   alt: string;
   srcurl: string;
   linkurl: string;
+  key: number;
 };
-export default function Homeimagediv({ alt, srcurl, linkurl }: props) {
+export default function Homeimagediv({ alt, srcurl, linkurl, key }: props) {
   return (
     <div className="image-div mr-3 block overflow-hidden lg:float-left rounded-b-sm h-auto  ">
       <Link href={linkurl} className="homepost_featureImage relative  ">
         <Image
           src={srcurl}
           alt={alt}
-          priority={true}
+          priority={key === 1 && true}
           width={278}
           height={250}
           style={{ objectFit: "cover", objectPosition: "center" }}

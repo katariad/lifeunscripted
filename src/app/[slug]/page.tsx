@@ -161,8 +161,9 @@ export default async function PostPage({
             src={post.featured_image}
             alt={post.title}
             className="aspect-3/1"
-            priority
+            priority={true}
             unoptimized
+            loading="eager"
           />
         )}
 

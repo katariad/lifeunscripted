@@ -1,4 +1,36 @@
 // src/app/about/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us - Life Unscripted",
+  description:
+    "Learn more about our mission, vision, and team at Life Unscripted.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/about",
+  },
+  openGraph: {
+    title: "About Life Unscripted",
+    description: "Discover the story behind Life Unscripted.",
+    url: "https://www.lifeunscripted.site/about",
+    siteName: "Life Unscripted",
+    type: "website",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Us Open Graph Image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us - Life Unscripted",
+    description: "Get to know Life Unscripted better.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"],
+  },
+};
+
 export default function AboutPage() {
   return (
     <div className="postcontent">

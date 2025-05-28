@@ -2,6 +2,39 @@
 import { fetchInitialData } from "@/lib/FetchIntialData";
 import Link from "next/link";
 import { Post } from "../types/Post";
+// app/sitemap/page.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sitemap | Life Unscripted",
+  description:
+    "Explore the full sitemap of Life Unscripted, including all static pages, categories, and blog posts.",
+  alternates: {
+    canonical: "https://www.lifeunscripted.site/sitemap",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.lifeunscripted.site/sitemap",
+    title: "Sitemap | Life Unscripted",
+    description:
+      "Quickly access all sections of our site including blog categories, posts, and legal pages.",
+    images: [
+      {
+        url: "https://www.lifeunscripted.site/ogimage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sitemap - Life Unscripted",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sitemap | Life Unscripted",
+    description:
+      "Navigate the Life Unscripted website with our complete sitemap listing.",
+    images: ["https://www.lifeunscripted.site/ogimage.jpg"],
+  },
+};
 
 const staticPages = [
   { title: "Home", href: "/" },

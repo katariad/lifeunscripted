@@ -51,9 +51,9 @@ export default function HomePage() {
     <div className="p-4">
       <div className="grid gap-6">
         {paginatedPosts.length > 0 ? (
-          paginatedPosts.map((post) => (
+          paginatedPosts.map((post, i) => (
             <Homepost
-              key={post.id}
+              key={i}
               title={post.title}
               imageurl={post.featured_image}
               category={post.category}

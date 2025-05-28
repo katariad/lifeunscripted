@@ -4,6 +4,47 @@ import Datefunction from "@/app/assest/utils/Datefunction";
 import { Post } from "@/app/types/Post";
 import Link from "next/link";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
+  const { posts } = await fetchInitialData();
+  const post = (posts as Post[]).find((p) => p.category === category);
+
+  if (!post) return {};
+
+  const title = `${post.category} | Life Unscripted`;
+  const description = `Explore blogs on ${post.category}  insights with Life Unscripted.`;
+  const url = `https://www.lifeunscripted.site/${post.category}`;
+  const image = "https://www.lifeunscripted.site/ogimage.jpg";
+
+  return {
+    title,
+    description,
+    robots: "index, follow",
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url,
+      siteName: "Life Unscripted",
+      images: image ? [{ url: image }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      creator: "@lifeunscripted",
+      images: image ? [image] : [],
+    },
+  };
+}
+
 export default async function CategoryPage({
   params,
 }: {
