@@ -54,6 +54,7 @@ export default function HomePage() {
           paginatedPosts.map((post, i) => (
             <Homepost
               key={i}
+              index={i}
               title={post.title}
               imageurl={post.featured_image}
               category={post.category}

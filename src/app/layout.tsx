@@ -21,11 +21,6 @@ export const metadata: Metadata = {
     "Earn online money with us",
     "Smart Seo tips and Guide",
   ],
-  icons: {
-    icon: "https://www.lifeunscripted.site/favicon.ico",
-    shortcut: "https://www.lifeunscripted.site/favicon.ico",
-    apple: "https://www.lifeunscripted.site/apple-touch-icon.png",
-  },
   robots: "index, follow",
   alternates: {
     canonical: "https://www.lifeunscripted.site/",
@@ -66,14 +61,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        {/* ✅ This is the correct way to add CSS from CDN */}
+      <body>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         />
-      </head>
-      <body>
         <GoogleTagManager gtmId="GTM-KXVJ84PK" />
         <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
         <InitialDataProvider data={initialData}>

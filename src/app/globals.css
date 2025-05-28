@@ -459,6 +459,7 @@ h2 a:hover {
 }
 
 
+
 @media (max-width:300px) {
 
   .prose table td,
@@ -471,5 +472,11 @@ h2 a:hover {
 @media (max-width:500px) {
   .prose table {
     font-size: 12px;
+  }
+}
+
+@media (max-width:1023px) {
+  .homepost_featureImage img {
+    aspect-ratio: 320/109;
   }
 }

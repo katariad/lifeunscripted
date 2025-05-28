@@ -10,7 +10,7 @@ type props = {
   description: string;
   linkurl: string;
   imageurl: string;
-  key: number;
+  index: number;
 };
 
 export default function Homepost({
@@ -21,11 +21,16 @@ export default function Homepost({
   description,
   linkurl,
   imageurl,
-  key,
+  index,
 }: props) {
   return (
     <main className="block   relative overflow-hidden p-0 m-0 mb-7 box-border">
-      <Homeimagediv srcurl={imageurl} alt={title} linkurl={linkurl} key={key} />
+      <Homeimagediv
+        srcurl={imageurl}
+        alt={title}
+        linkurl={linkurl}
+        index={index}
+      />
       <Homepostcontent
         category={category}
         title={title}

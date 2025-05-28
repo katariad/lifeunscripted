@@ -49,7 +49,11 @@ export default function Homepostcontent({
         </p>
       </div>
 
-      <Link rel="stylesheet" href={`/${linkurl}`} className="readmore_button">
+      <Link
+        href={`/${linkurl}`}
+        className="readmore_button"
+        aria-label={`${title}`}
+      >
         Read more
       </Link>
     </div>
