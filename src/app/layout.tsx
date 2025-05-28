@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import "./globals.css";
 import Header from "./assest/components/header/header";
 import Footer from "./assest/components/footer/footer";
