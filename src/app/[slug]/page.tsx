@@ -8,6 +8,7 @@ import Image from "next/image";
 import PostContent from "@/app/[slug]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
+import slugify from "../assest/utils/Slugmaker";
 export const dynamic = "force-dynamic";
 // ✅ Generate metadata for SEO using App Router
 
@@ -137,7 +138,9 @@ export default async function PostPage({
         <div className="mb-4 border-b-2 border-dotted border-gray-300/90">
           <p className="flex gap-1 text-xs! capitalize mt-0">
             <Link href="/">Home</Link> <span> {">"} </span>
-            <Link href={`/categories/${post.category}`}>{post.category}</Link>
+            <Link href={`/categories/${post.category}`}>
+              {slugify(post.category)}
+            </Link>
             <span> {">"} </span>
             {post.title}
           </p>
