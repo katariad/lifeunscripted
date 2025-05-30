@@ -52,9 +52,9 @@ export default function Homepostcontent({
       <Link
         href={`/${linkurl}`}
         className="readmore_button"
-        aria-label={`${title}`}
+        aria-label={` follow us on ${title}`}
       >
-        Read more
+        read more
       </Link>
     </div>
   );

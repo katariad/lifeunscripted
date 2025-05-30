@@ -8,7 +8,7 @@ export default function topbarsociallist() {
     <div className="top-bar-social flex items-center ">
       <ul className="flex ">
         <Socialiconlist link="www.facebook.com/">
-          <MdFacebook size={"1.5em"} />
+          <MdFacebook size={"1.5em"} aria-hidden="true" />
         </Socialiconlist>
 
         <Socialiconlist link="www.twitter.com/">

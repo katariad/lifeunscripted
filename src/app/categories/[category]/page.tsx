@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Datefunction from "@/app/assest/utils/Datefunction";
 import { Post } from "@/app/types/Post";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {
@@ -52,8 +52,6 @@ export default async function CategoryPage({
 }) {
   const { category } = await params;
 
-  console.log(category.replaceAll("-", " ").toLowerCase());
-
   const { posts } = await fetchInitialData();
 
   if (!posts || posts.length === 0) {
@@ -72,7 +70,12 @@ export default async function CategoryPage({
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Category: {category}</h1>
+      <h1 className="text-3xl font-bold mb-4">
+        Category:{" "}
+        <span className="capitalize">
+          {category.replaceAll("-", " ").toLowerCase()}
+        </span>
+      </h1>
       <ul className="space-y-4">
         {filteredPosts.map((post) => (
           <li key={post.id} className="border p-4 rounded shadow">

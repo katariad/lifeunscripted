@@ -10,11 +10,12 @@ export default async function FeaturePost() {
     <div className="p-3">
       <Link href={post.slug}>
         <Image
-          alt={post.title}
+          alt={""}
+          width={677}
+          height={230}
+          role="presentation"
           src={post.featured_image}
-          width={700}
-          height={200}
-          className="aspect-7/2 mb-2"
+          className="object cover mb-2 featured_img  "
         />
         <h3 className="bold capitalize  pl-2 ">{post.title}</h3>
       </Link>

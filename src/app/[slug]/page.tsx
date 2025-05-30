@@ -8,7 +8,7 @@ import Image from "next/image";
 import PostContent from "@/app/[slug]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
-
+export const dynamic = "force-dynamic";
 // ✅ Generate metadata for SEO using App Router
 
 export async function generateMetadata({

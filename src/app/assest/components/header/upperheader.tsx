@@ -1,6 +1,6 @@
 import Topbarsociallist from "../../ui/topbarsociallist";
 import Logo from "../../ui/logo";
-import logo_url from "../../../../public/logo.webp";
+import logo_url from "../../../../../public/logo.webp";
 import Upperheadermenu from "../../ui/upperheadermenu";
 
 export default function upperheader() {

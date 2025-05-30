@@ -65,8 +65,9 @@ export default function Subscribeus() {
           <span className="ml-2">
             <Image
               alt="follow.it"
-              height="17"
+              height={16}
               src="https://follow.it/images/colored-logo.svg"
+              priority
               width={100}
             />
           </span>

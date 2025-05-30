@@ -83,7 +83,7 @@ export default async function RootLayout({
                 <FeaturePost />
               </main>
               <div
-                className=" w-full relative md:w-3/10 box-border "
+                className=" w-full relative md:w-[30%] box-border "
                 id="content-container"
               >
                 <Sidebar />

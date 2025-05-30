@@ -1,5 +1,5 @@
 // app/sitemap.xml/route.ts
-
+export const dynamic = "force-dynamic";
 import { fetchInitialData } from "@/lib/FetchIntialData";
 import { Post } from "@/app/types/Post";
 

@@ -479,4 +479,8 @@ h2 a:hover {
   .homepost_featureImage img {
     aspect-ratio: 320/109;
   }
+
+  .featured_img {
+    aspect-ratio: 320/109;
+  }
 }

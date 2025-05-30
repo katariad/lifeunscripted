@@ -38,7 +38,7 @@ export default function Singlepostlist({
         </Link>
         <div className="post-info overflow-hidden ">
           <h2 className="post-title mt-0!important text-xs  ">
-            <Link href={linkurl} className="text-sm!important">
+            <Link href={`/${linkurl}`} className="text-sm!important">
               {title}
             </Link>
             <span className="post-date published text-xs">
