@@ -138,8 +138,8 @@ export default async function PostPage({
         <div className="mb-4 border-b-2 border-dotted border-gray-300/90">
           <p className="flex gap-1 text-xs! capitalize mt-0">
             <Link href="/">Home</Link> <span> {">"} </span>
-            <Link href={`/categories/${post.category}`}>
-              {slugify(post.category)}
+            <Link href={`/categories/${slugify(post.category)}`}>
+              {post.category}
             </Link>
             <span> {">"} </span>
             {post.title}
@@ -165,8 +165,6 @@ export default async function PostPage({
             alt={post.title}
             className="aspect-3/1"
             priority={true}
-            unoptimized
-            loading="eager"
           />
         )}
 
