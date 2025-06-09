@@ -2,18 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Singlepostlist from "./Singlepostlist";
-import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Post } from "@/app/types/Post";
+import { usePosts } from "@/context/PostContext";
 
 export default function PopularPostList() {
-  const [popularPosts, setPopularPosts] = useState<Post[]>([]);
+  const { posts } = usePosts();
+  const [popularPosts, setPopularPosts] = useState(posts);
 
   useEffect(() => {
     const loadPosts = async () => {
-      const { posts } = await fetchInitialData();
-
-      if (posts) {
-        const filtered = (posts as Post[])
+      if (posts && posts.length > 0) {
+        const filtered = posts
           .filter((post) => post.is_popular)
           .sort(
             (a, b) =>
@@ -25,11 +23,18 @@ export default function PopularPostList() {
         setPopularPosts(filtered);
       }
     };
-
     loadPosts();
-  }, []);
+  }, [posts]);
 
-  if (popularPosts.length === 0) return <div>No popular posts found.</div>;
+  if (!posts || posts.length === 0) {
+    return (
+      <div className="text-sm text-gray-500">Loading Popular posts...</div>
+    );
+  }
+
+  if (popularPosts.length === 0) {
+    return <div className="text-sm text-gray-500">No popular posts found.</div>;
+  }
 
   return (
     <div>

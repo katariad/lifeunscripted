@@ -13,8 +13,9 @@ export default async function FeaturePost() {
           alt={"Faeture post image"}
           width={677}
           height={230}
-          priority // ✅ Preload for LCP
+          loading="eager"
           fetchPriority="high"
+          priority // ✅ Preload for LCP
           src={post.featured_image}
           className="object cover mb-2 featured_img  "
         />

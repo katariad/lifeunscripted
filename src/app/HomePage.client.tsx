@@ -2,50 +2,52 @@
 
 import { useEffect, useState } from "react";
 import Homepost from "./assest/components/homepostcontent.tsx/Homepost";
-import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Post } from "./types/Post";
+// import { fetchInitialData } from "@/lib/FetchIntialData";
+// import { Post } from "./types/Post";
 import { useSearchParams } from "next/navigation";
+import { usePosts } from "@/context/PostContext";
 
 export default function HomePage() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const { posts } = usePosts();
+  const [postdata, setPostdata] = useState(posts);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const postsPerPage = 5;
   const maxPageNumbers = 3;
-  const totalPages = Math.ceil(posts.length / postsPerPage);
-  const startIndex = (currentPage - 1) * postsPerPage;
-  const paginatedPosts = posts.slice(startIndex, startIndex + postsPerPage);
-  const startPage = Math.max(currentPage - Math.floor(maxPageNumbers / 2), 1);
-  const endPage = Math.min(startPage + maxPageNumbers - 1, totalPages);
-  const adjustedStart = Math.max(endPage - maxPageNumbers + 1, 1);
 
   useEffect(() => {
     const loadPosts = async () => {
-      const { posts } = await fetchInitialData();
       setIsLoading(true);
-      if (posts) {
-        const sortedPosts = (posts as Post[]).sort((a, b) => {
-          return (
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-          );
-        });
 
+      if (posts) {
+        const sortedPosts = posts.sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
         const filtered = query
           ? sortedPosts.filter((post) =>
               post.title.toLowerCase().includes(query.toLowerCase())
             )
           : sortedPosts;
 
-        setPosts(filtered);
+        setPostdata(filtered);
         setCurrentPage(1);
         setIsLoading(false);
       }
     };
 
     loadPosts();
-  }, [query]);
+  }, [query, posts]);
+
+  const totalPages = Math.ceil(postdata.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const paginatedPosts = postdata.slice(startIndex, startIndex + postsPerPage);
+
+  const startPage = Math.max(currentPage - Math.floor(maxPageNumbers / 2), 1);
+  const endPage = Math.min(startPage + maxPageNumbers - 1, totalPages);
+  const adjustedStart = Math.max(endPage - maxPageNumbers + 1, 1);
 
   return (
     <div className="p-4">
@@ -76,7 +78,9 @@ export default function HomePage() {
         <div className="flex items-center mt-8 space-x-2">
           {currentPage > 1 && (
             <button
-              onClick={() => setCurrentPage(currentPage - 1)}
+              onClick={() => {
+                setCurrentPage(currentPage - 1);
+              }}
               className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
             >
               ←
@@ -90,7 +94,10 @@ export default function HomePage() {
               return (
                 <button
                   key={pageNumber}
-                  onClick={() => setCurrentPage(pageNumber)}
+                  onClick={() => {
+                    setCurrentPage(pageNumber);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
                   className={`px-3 py-1 rounded ${
                     pageNumber === currentPage
                       ? "bg-[#302d55] text-white"

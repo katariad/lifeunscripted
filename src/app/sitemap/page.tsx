@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Post } from "../types/Post";
 // app/sitemap/page.tsx
 import type { Metadata } from "next";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Sitemap | Life Unscripted",
@@ -66,7 +67,7 @@ const SitemapPage = async () => {
         <h2 className="">Static Pages</h2>
         <ul className="">
           {staticPages.map((page) => (
-            <li key={page.href}>
+            <li key={`/${page.href}`}>
               <Link
                 href={page.href}
                 className="text-blue-600 hover:underline hover:text-blue-800 transition"

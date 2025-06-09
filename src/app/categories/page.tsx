@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next";
 import Categoryclient from "./Categoryclinet";
-
+export const dynamic = "force-dynamic";
 // app/categories/page.tsx
 export const metadata: Metadata = {
   title: "Browse All Categories | Life Unscripted",

@@ -374,8 +374,35 @@ h2 a:hover {
 
 
 @media (max-width:765px) {
+
+  footer {
+    margin-top: 12px;
+  }
+
+  main .p-4 {
+    padding: 8px 15px;
+  }
+
+  footer .p-9 {
+    padding: 0px 15px;
+  }
+
   #content-container .sidebar {
     max-width: 100% !important;
+    position: relative !important;
+    box-sizing: border-box;
+    padding: 0 15px;
+    z-index: 0;
+    top: 0;
+
+  }
+
+  .sidebar h3 {
+    font-size: 20px !important;
+  }
+
+  .preview-heading {
+    font-size: 20px !important;
   }
 }
 

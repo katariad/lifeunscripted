@@ -2,37 +2,37 @@
 
 import { useEffect, useState } from "react";
 import Singlepostlist from "./Singlepostlist";
-import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Post } from "@/app/types/Post";
+import { usePosts } from "@/context/PostContext";
 
 export default function RecentList() {
-  const [popularPosts, setPopularPosts] = useState<Post[]>([]);
+  const { posts } = usePosts(); // Get global post state
+  const [recentPosts, setRecentPosts] = useState(posts);
 
   useEffect(() => {
-    const loadPosts = async () => {
-      const { posts } = await fetchInitialData();
+    if (posts && posts.length > 0) {
+      const sortedRecent = posts
+        .slice() // Create a shallow copy to avoid mutating global state
+        .sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        )
+        .slice(0, 4);
 
-      if (posts) {
-        const filtered = (posts as Post[])
-          .sort(
-            (a, b) =>
-              new Date(b.created_at).getTime() -
-              new Date(a.created_at).getTime()
-          )
-          .slice(0, 4);
+      setRecentPosts(sortedRecent);
+    }
+  }, [posts]);
 
-        setPopularPosts(filtered);
-      }
-    };
+  if (!posts || posts.length === 0) {
+    return <div className="text-gray-500 text-sm">Loading recent posts...</div>;
+  }
 
-    loadPosts();
-  }, []);
-
-  if (popularPosts.length === 0) return <div>No popular posts found.</div>;
+  if (recentPosts.length === 0) {
+    return <div className="text-gray-500 text-sm">No recent posts found.</div>;
+  }
 
   return (
     <div>
-      {popularPosts.map((post) => (
+      {recentPosts.map((post) => (
         <Singlepostlist
           key={post.id}
           feautureimage={post.featured_image}

@@ -2,37 +2,39 @@
 
 import { useEffect, useState } from "react";
 import Singlepostlist from "./Singlepostlist";
-import { fetchInitialData } from "@/lib/FetchIntialData";
-import { Post } from "@/app/types/Post";
+import { usePosts } from "@/context/PostContext";
 
 export default function UpdatedPostList() {
-  const [popularPosts, setPopularPosts] = useState<Post[]>([]);
+  const { posts } = usePosts();
+  const [updatedPosts, setUpdatedPosts] = useState(posts);
 
   useEffect(() => {
-    const loadPosts = async () => {
-      const { posts } = await fetchInitialData();
+    if (posts && posts.length > 0) {
+      const filtered = posts
+        .slice() // Make a shallow copy
+        .sort(
+          (a, b) =>
+            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        )
+        .slice(0, 4);
 
-      if (posts) {
-        const filtered = (posts as Post[])
-          .sort(
-            (a, b) =>
-              new Date(b.updated_at).getTime() -
-              new Date(a.updated_at).getTime()
-          )
-          .slice(0, 4);
+      setUpdatedPosts(filtered);
+    }
+  }, [posts]);
 
-        setPopularPosts(filtered);
-      }
-    };
+  if (!posts || posts.length === 0) {
+    return (
+      <div className="text-sm text-gray-500">Loading updated posts...</div>
+    );
+  }
 
-    loadPosts();
-  }, []);
-
-  if (popularPosts.length === 0) return <div>No popular posts found.</div>;
+  if (updatedPosts.length === 0) {
+    return <div className="text-sm text-gray-500">No updated posts found.</div>;
+  }
 
   return (
     <div>
-      {popularPosts.map((post) => (
+      {updatedPosts.map((post) => (
         <Singlepostlist
           key={post.id}
           feautureimage={post.featured_image}

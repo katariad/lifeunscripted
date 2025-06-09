@@ -8,7 +8,8 @@ import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
-
+import { PostProvider } from "@/context/PostContext";
+import "@/app/assest/css/fontawesome.min.css";
 export const metadata: Metadata = {
   title: "LifeUnscripted - Blogging Tips & Natural Living",
   description:
@@ -63,35 +64,32 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        />
         <GoogleTagManager gtmId="GTM-KXVJ84PK" />
         <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
         <InitialDataProvider data={initialData}>
-          <Header />
-
-          <section className="flex justify-center align-middle  ">
-            <div
-              className="container relative border-box w-full p-2 md:flex gap-x-5 max-w-[1070px] "
-              id="main-container"
-            >
-              <main className=" w-full  md:w-4/5 md:min-h-[1025px] content ">
-                {children}
-
-                <FeaturePost />
-              </main>
+          <PostProvider>
+            <Header />
+            <section className="flex justify-center align-middle  ">
               <div
-                className=" w-full relative md:w-[30%] box-border "
-                id="content-container"
+                className="container relative border-box w-full p-2 md:flex gap-x-5 max-w-[1070px] "
+                id="main-container"
               >
-                <Sidebar />
-              </div>
-            </div>
-          </section>
+                <main className=" w-full  md:w-4/5 md:min-h-[1025px] content ">
+                  {children}
 
-          <Footer />
+                  <FeaturePost />
+                </main>
+                <div
+                  className=" w-full relative md:w-[30%] box-border "
+                  id="content-container"
+                >
+                  <Sidebar />
+                </div>
+              </div>
+            </section>
+
+            <Footer />
+          </PostProvider>
         </InitialDataProvider>
       </body>
     </html>

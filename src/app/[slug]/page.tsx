@@ -9,6 +9,7 @@ import PostContent from "@/app/[slug]/Postcontent";
 import { Post } from "@/app/types/Post";
 import Script from "next/script";
 import slugify from "../assest/utils/Slugmaker";
+
 export const dynamic = "force-dynamic";
 // ✅ Generate metadata for SEO using App Router
 
@@ -164,7 +165,9 @@ export default async function PostPage({
             src={post.featured_image}
             alt={post.title}
             className="aspect-3/1"
-            priority={true}
+            priority
+            fetchPriority="high"
+            loading="eager"
           />
         )}
 
