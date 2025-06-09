@@ -1,45 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Homepost from "./assest/components/homepostcontent.tsx/Homepost";
-// import { fetchInitialData } from "@/lib/FetchIntialData";
-// import { Post } from "./types/Post";
 import { useSearchParams } from "next/navigation";
 import { usePosts } from "@/context/PostContext";
 
 export default function HomePage() {
   const { posts } = usePosts();
-  const [postdata, setPostdata] = useState(posts);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const postsPerPage = 5;
   const maxPageNumbers = 3;
 
+  const sortedPosts = useMemo(() => {
+    if (!posts) return [];
+    return [...posts].sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
+  }, [posts]);
+
+  const [postdata, setPostdata] = useState(sortedPosts);
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    const loadPosts = async () => {
-      setIsLoading(true);
-
-      if (posts) {
-        const sortedPosts = posts.sort(
-          (a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        );
-        const filtered = query
-          ? sortedPosts.filter((post) =>
-              post.title.toLowerCase().includes(query.toLowerCase())
-            )
-          : sortedPosts;
-
-        setPostdata(filtered);
-        setCurrentPage(1);
-        setIsLoading(false);
-      }
-    };
-
-    loadPosts();
-  }, [query, posts]);
+    if (query) {
+      const filtered = sortedPosts.filter((post) =>
+        post.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setPostdata(filtered);
+    } else {
+      setPostdata(sortedPosts);
+    }
+    setCurrentPage(1);
+  }, [query, sortedPosts]);
 
   const totalPages = Math.ceil(postdata.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
@@ -67,9 +61,7 @@ export default function HomePage() {
             />
           ))
         ) : (
-          <p className="text-center text-gray-500">
-            {loading ? `Loading ...` : "No post Found.!"}
-          </p>
+          <p className="text-center text-gray-500">No post Found.!</p>
         )}
       </div>
 
@@ -78,9 +70,7 @@ export default function HomePage() {
         <div className="flex items-center mt-8 space-x-2">
           {currentPage > 1 && (
             <button
-              onClick={() => {
-                setCurrentPage(currentPage - 1);
-              }}
+              onClick={() => setCurrentPage(currentPage - 1)}
               className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
             >
               ←

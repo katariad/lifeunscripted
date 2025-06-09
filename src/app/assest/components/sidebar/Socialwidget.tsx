@@ -3,7 +3,7 @@ import Widgettitle from "../../ui/Widgettitle";
 
 export default function Socialwidget() {
   return (
-    <div className="widget mt-8">
+    <div className="widget mt-8 min-h-[143px] ">
       <Widgettitle title="Social Plugin" />
       <div className="widget-content">
         <ul className="social-counter social social-color">

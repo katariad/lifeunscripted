@@ -37,7 +37,7 @@ const styleButton: CSSProperties = {
 
 export default function Subscribeus() {
   return (
-    <div className="p-1 widget">
+    <div className="p-1 widget min-h-[234px] ">
       <Widgettitle title={"subscribe us"} />
       <div className="followit--follow-form-container p-2.5">
         <form

@@ -10,7 +10,6 @@ type props = {
 };
 
 export default function Homeimagediv({ alt, srcurl, linkurl, index }: props) {
-  console.log(index);
   return (
     <div className="image-div mr-3 block overflow-hidden lg:float-left rounded-b-sm h-auto  ">
       <Link href={linkurl} className="homepost_featureImage relative  ">
