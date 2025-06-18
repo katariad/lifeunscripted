@@ -6,7 +6,7 @@ import Sidebar from "./assest/components/sidebar/Sidebar";
 import { fetchInitialData } from "../lib/FetchIntialData";
 import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+// import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { PostProvider } from "@/context/PostContext";
 import "@/app/assest/css/fontawesome.min.css";
@@ -64,8 +64,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <GoogleTagManager gtmId="GTM-KXVJ84PK" />
-        <GoogleAnalytics gaId="G-ZZP1T8RE3K" />
+        {/* <GoogleTagManager gtmId="GTM-KXVJ84PK" />
+        <GoogleAnalytics gaId="G-ZZP1T8RE3K" /> */}
         <InitialDataProvider data={initialData}>
           <PostProvider>
             <Header />

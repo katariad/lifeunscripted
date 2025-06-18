@@ -17,6 +17,7 @@ export default function Homeimagediv({ alt, srcurl, linkurl, index }: props) {
           src={srcurl}
           alt={alt}
           priority={index === 0 || index === 1}
+          fetchPriority={index === 0 || index === 1 ? "high" : "low"}
           width={278}
           height={250}
           style={{

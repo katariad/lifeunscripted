@@ -14,6 +14,7 @@ export default async function FeaturePost() {
           width={677}
           height={230}
           layout="responsive"
+          fetchPriority="high"
           priority // ✅ Preload for LCP
           src={post.featured_image}
           className="object cover mb-2 featured_img  "
