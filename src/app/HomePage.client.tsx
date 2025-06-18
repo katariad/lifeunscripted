@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Homepost from "./assest/components/homepostcontent.tsx/Homepost";
 import { useSearchParams } from "next/navigation";
 import { usePosts } from "@/context/PostContext";
+import { Post } from "./types/Post";
 
 export default function HomePage() {
   const { posts } = usePosts();
@@ -13,17 +14,19 @@ export default function HomePage() {
   const maxPageNumbers = 3;
 
   const sortedPosts = useMemo(() => {
-    if (!posts) return [];
+    if (!Array.isArray(posts) || posts.length === 0) return [];
     return [...posts].sort(
       (a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
   }, [posts]);
 
-  const [postdata, setPostdata] = useState(sortedPosts);
+  const [postdata, setPostdata] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
+    if (!sortedPosts || sortedPosts.length === 0) return;
+
     if (query) {
       const filtered = sortedPosts.filter((post) =>
         post.title.toLowerCase().includes(query.toLowerCase())
@@ -43,10 +46,17 @@ export default function HomePage() {
   const endPage = Math.min(startPage + maxPageNumbers - 1, totalPages);
   const adjustedStart = Math.max(endPage - maxPageNumbers + 1, 1);
 
+  const isLoading = !Array.isArray(posts) || posts.length === 0;
+  const showEmpty = !isLoading && postdata.length === 0;
+
   return (
     <div className="p-4">
       <div className="grid gap-6">
-        {paginatedPosts.length > 0 ? (
+        {isLoading ? (
+          <p className="text-center text-gray-400">Loading posts...</p>
+        ) : showEmpty ? (
+          <p className="text-center text-gray-500">No post Found.!</p>
+        ) : (
           paginatedPosts.map((post, i) => (
             <Homepost
               key={i}
@@ -60,8 +70,6 @@ export default function HomePage() {
               linkurl={post.slug}
             />
           ))
-        ) : (
-          <p className="text-center text-gray-500">No post Found.!</p>
         )}
       </div>
 

@@ -1,15 +1,15 @@
 // app/[post]/page.tsx
-import { fetchInitialData } from "@/lib/FetchIntialData";
+// import { fetchInitialData } from "@/lib/FetchIntialData";
 import Link from "next/link";
 import "./post.css";
 import { notFound } from "next/navigation";
 import Datefunction from "@/app/assest/utils/Datefunction";
 import Image from "next/image";
 import PostContent from "@/app/[slug]/Postcontent";
-import { Post } from "@/app/types/Post";
+// import { Post } from "@/app/types/Post";
 import Script from "next/script";
 import slugify from "../assest/utils/Slugmaker";
-
+import { getPostBySlug } from "@/lib/getPostBySlug";
 export const dynamic = "force-dynamic";
 // ✅ Generate metadata for SEO using App Router
 
@@ -19,8 +19,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { posts } = await fetchInitialData();
-  const post = (posts as Post[]).find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
+  if (!post) notFound();
+
+  // const { posts } = await fetchInitialData();
+  // const post = (posts as Post[]).find((p) => p.slug === slug);
 
   if (!post) return {};
 
@@ -65,8 +68,11 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { posts } = await fetchInitialData();
-  const post = (posts as Post[]).find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
+  if (!post) notFound();
+
+  // const { posts } = await fetchInitialData();
+  // const post = (posts as Post[]).find((p) => p.slug === slug);
   const faqSchema = post?.faqSchema;
   if (!post) {
     notFound();
@@ -74,7 +80,11 @@ export default async function PostPage({
 
   return (
     <>
-      <Script id="ld-json" type="application/ld+json">
+      <Script
+        id="ld-json"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
@@ -100,7 +110,11 @@ export default async function PostPage({
       </Script>
 
       {/* Breadcrumb JSON-LD Structured Data */}
-      <Script id="breadcrumb-jsonld" type="application/ld+json">
+      <Script
+        id="breadcrumb-jsonld"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -128,7 +142,11 @@ export default async function PostPage({
       </Script>
 
       {faqSchema && (
-        <Script id="faq-schema" type="application/ld+json">
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
           {typeof faqSchema === "string"
             ? faqSchema
             : JSON.stringify(faqSchema)}

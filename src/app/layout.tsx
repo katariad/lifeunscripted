@@ -10,6 +10,7 @@ import FeaturePost from "./assest/components/FeaturePost";
 import type { Metadata } from "next";
 import { PostProvider } from "@/context/PostContext";
 import "@/app/assest/css/fontawesome.min.css";
+import ClientOnlyAnalytics from "./assest/components/ClientOnlyAnalytics";
 export const metadata: Metadata = {
   title: "LifeUnscripted - Blogging Tips & Natural Living",
   description:
@@ -91,6 +92,7 @@ export default async function RootLayout({
             <Footer />
           </PostProvider>
         </InitialDataProvider>
+        <ClientOnlyAnalytics />
       </body>
     </html>
   );
