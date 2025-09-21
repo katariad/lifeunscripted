@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Singlepostlist from "./Singlepostlist";
 import { usePosts } from "@/context/PostContext";

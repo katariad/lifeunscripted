@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useMemo, useState } from "react";
 import Homepost from "./assest/components/homepostcontent.tsx/Homepost";
 import { useSearchParams } from "next/navigation";

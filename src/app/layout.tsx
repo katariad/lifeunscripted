@@ -1,4 +1,3 @@
-export const dynamic = "force-static";
 import "./globals.css";
 import Header from "./assest/components/header/header";
 import Footer from "./assest/components/footer/footer";
@@ -6,7 +5,6 @@ import Sidebar from "./assest/components/sidebar/Sidebar";
 import { fetchInitialData } from "../lib/FetchIntialData";
 import { InitialDataProvider } from "../lib/InitialDataContext";
 import FeaturePost from "./assest/components/FeaturePost";
-// import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { PostProvider } from "@/context/PostContext";
 import "@/app/assest/css/fontawesome.min.css";
@@ -26,19 +24,19 @@ export const metadata: Metadata = {
   ],
   robots: "index, follow",
   alternates: {
-    canonical: "https://www.lifeunscripted.site/",
+    canonical: "https://lifeunscripted.site/",
   },
   openGraph: {
     title: "Lifeunscripted - Blogging Tips & Natural Living",
     description:
       "Lifeunscripted offers blogging tutorials, SEO tips, and natural skincare remedies to help you live better and earn online.",
-    url: "https://www.lifeunscripted.site/",
+    url: "https://lifeunscripted.site/",
     siteName: "Life Unscripted",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: `https://www.lifeunscripted.site/ogimage.jpg`,
+        url: `https://lifeunscripted.site/ogimage.jpg`,
         width: 1200,
         height: 630,
         alt: "Lifeunscripted",
@@ -51,7 +49,7 @@ export const metadata: Metadata = {
     description:
       "Blog smarter and live better with expert SEO, blogging, and natural wellness content.",
     creator: "@lifeunscripted",
-    images: [`https://www.lifeunscripted.site/ogimage.jpg`],
+    images: [`https://lifeunscripted.site/ogimage.jpg`],
   },
 };
 

@@ -16,7 +16,10 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 60,
   },
+  compress: true,
 };
 
 export default nextConfig;

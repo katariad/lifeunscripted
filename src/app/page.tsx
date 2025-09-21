@@ -1,9 +1,19 @@
-import HomePage from "./HomePage.client";
+import { fetchInitialData } from "../lib/FetchIntialData";
+import HomePostList from "./components/HomePostList";
 
-export default function Page() {
+interface PageProps {
+  searchParams: { q?: string; page?: string };
+}
+
+export default async function HomePage({ searchParams }: PageProps) {
+  const initialData = await fetchInitialData();
+
   return (
-    <>
-      <HomePage />
-    </>
+    <div className="container mx-auto px-4">
+      <HomePostList
+        initialPosts={initialData.posts || []}
+        searchParams={searchParams}
+      />
+    </div>
   );
 }

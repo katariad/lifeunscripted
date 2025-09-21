@@ -84,4 +84,10 @@
     .prose table {
         font-size: 12px;
     }
+
+    .postcontent table {
+        max-width: 290px;
+        overflow-x: scroll;
+    }
+
 }

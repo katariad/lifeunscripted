@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://www.lifeunscripted.site/sitemap.xml",
+    sitemap: "https://lifeunscripted.site/sitemap.xml",
   };
 }
