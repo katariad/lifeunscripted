@@ -3,11 +3,10 @@ import { fetchInitialData } from "../../lib/FetchIntialData";
 import { getPostBySlug } from "../../lib/getPostBySlug";
 import ArticleSchema from "../components/ArticleSchema";
 import "./post.css";
-interface PageProps {
-  params: { slug: string };
-}
 
-// Generate static pages for all posts
+interface PageProps {
+  params: Promise<{ slug: string }>; // Promise type
+} // Generate static pages for all posts
 export async function generateStaticParams() {
   const { posts } = await fetchInitialData();
 
@@ -17,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params; // Await the params
+  const post = await getPostBySlug(slug);
 
   if (!post) return {};
 
@@ -37,7 +37,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params; // Await the params
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
