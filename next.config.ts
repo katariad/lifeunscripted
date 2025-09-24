@@ -16,8 +16,10 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    deviceSizes: [278, 556, 768, 1024, 1200], // Match your sizes
+    imageSizes: [278, 300, 556], // Specific image sizes
+    minimumCacheTTL: 3600, // Cache images for 1 hour
     formats: ["image/webp", "image/avif"],
-    minimumCacheTTL: 60,
   },
   compress: true,
 };
