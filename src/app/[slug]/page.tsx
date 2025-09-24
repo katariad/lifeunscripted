@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { fetchInitialData } from "../../lib/FetchIntialData";
 import { getPostBySlug } from "../../lib/getPostBySlug";
 import ArticleSchema from "../components/ArticleSchema";
+
 import "./post.css";
 
 interface PageProps {
