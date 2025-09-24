@@ -12,7 +12,7 @@ export default function Sidebar() {
     <div ref={sidebarRef} className="sidebar min-h-[947px] ">
       <Subscribeus />
       <Socialwidget />
-      <Popularpost />
+{/*       <Popularpost /> */}
       <PopularCategroies />
     </div>
   );
